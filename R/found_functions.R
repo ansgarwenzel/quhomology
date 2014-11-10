@@ -1,6 +1,7 @@
 #These two functions were originally written by Prof. John Fox.
 #see: http://socserv.mcmaster.ca/jfox/Courses/R-course-Berkeley/
 #and slightly adapted for this project.
+#He has given me permission (by email) to use his functions for this package.
 
 GaussianElimination <- compiler::cmpfun(function(A, B, tol=sqrt(.Machine$double.eps),
                                  verbose=FALSE, fractions=FALSE){
