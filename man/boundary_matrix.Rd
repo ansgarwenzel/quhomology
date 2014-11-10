@@ -26,7 +26,7 @@ If degenerate=TRUE, this calculates the boundary matrix for the quandle homology
 }
 \details{
 This functions takes all words (or just the non-degenerate ones) of length $degree$ in the rack/biquandle (which are represented by $Z_k$) and then calculates their boundary via the following equation. For this, let $x=(x_i)_0^{degree-1}$ be an element of the rack/birack and let $n:=degree-1$.
-$$\partial(x) = \Sigma_{i=0}^n (-1)^i ( (x_0\ldots\hat{(x_i)}...x_n)-(x_0^{x_i}x_1^{x_i}...x_{i-1}^{x_i}{x_{i+1}}_{x_i}...{x_n}_{x_i}) )$$
+$$partial(x) = Sum_{i=0}^n (-1)^i ( (x_0...{(^x_i)}...x_n)-(x_0^{x_i}x_1^{x_i}...x_{i-1}^{x_i}{x_{i+1}}_{x_i}...{x_n}_{x_i}) )$$, where ^x_i means except x_i.
 If this is a rack rather than a birack, remember that $f_a()=Id$.
 }
 \value{

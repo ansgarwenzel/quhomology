@@ -11,7 +11,8 @@ $$
 $$
 }
 \usage{
-GaussianElimination(A, B, tol = sqrt(.Machine$double.eps), verbose = FALSE, fractions = FALSE)
+GaussianElimination(A, B, tol = sqrt(.Machine$double.eps),
+verbose = FALSE, fractions = FALSE)
 }
 
 \arguments{

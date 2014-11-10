@@ -15,7 +15,7 @@ push_down <- compiler::cmpfun(function(D){
     a <- D[i]
     b <- D[i + 1]
     if(a!=1||b!=1){
-      d <- GCD(a,b)
+      d <- numbers::GCD(a,b)
       if(a==0 || b==0){
         d <- ifelse(a==0,abs(b),abs(a))
       }
@@ -52,8 +52,8 @@ check_more_push <- compiler::cmpfun(function(D){
 #this calculates the smith normal form based on the calculation of the Hermite Normal Form.
 #In particular, HNF((HNF(A))^T)
 smith <- compiler::cmpfun(function(S){
-  S <- hermiteNF(S)$H
-  S <- t(hermiteNF(t(S))$H)
+  S <- numbers::hermiteNF(S)$H
+  S <- t(numbers::hermiteNF(t(S))$H)
   D <- diag(S)
   D <- push_down(D)
   for(i in 1:length(D)){
@@ -88,7 +88,7 @@ matrix_rank <- compiler::cmpfun(function(A){
 
 
 row_space <- compiler::cmpfun(function(B){
-  B <- t(hermiteNF(t(B))$H)
+  B <- t(numbers::hermiteNF(t(B))$H)
   return(B)
 })
 
@@ -105,7 +105,7 @@ homology <- compiler::cmpfun(function(degree, k, quandle=TRUE){
   boundary_G <- findX(boundary_G)
   boundary_G <- boundary_G[(rho + 1):q, ] #only take the rows that map to zero (i.e. only the boundaries)
   boundary_F <- row_space(boundary_F) #identify the cycles, i.e. remove the boundaries via Gaussian elimination
-  boundary_G <- round(boundary_F %*% ginv(boundary_G)) #calculate N. Details in documentation
+  boundary_G <- round(boundary_F %*% MASS::ginv(boundary_G)) #calculate N. Details in documentation
   boundary_G <- smith(boundary_G)
   Delta <- diag(boundary_G) #Extract the values necessary for the output.
   s <- length(Delta)
@@ -155,7 +155,7 @@ degenerate_homology <- compiler::cmpfun(function(degree, k){
   X <- findX(boundary_G)
   Z <- X[(rho + 1):q, ] #only take the rows that map to zero (i.e. only the boundaries)
   B <- row_space(boundary_F) #identify the cycles, i.e. remove the boundaries via Gaussian elimination
-  N <- round(B %*% ginv(Z)) #calculate N. Details in documentation
+  N <- round(B %*% MASS::ginv(Z)) #calculate N. Details in documentation
   S <- smith(N)
   Delta <- diag(S) #Extract the values necessary for the output.
   s <- length(Delta)

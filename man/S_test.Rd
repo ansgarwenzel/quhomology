@@ -28,5 +28,6 @@ No return. Output with result of test.
 ###Using the provided up/down action functions.
 S_test(3)
 ##Output:
-"The permutation checks hold that S is TRUE, f is TRUE and g is TRUE and that the Yang-Baxter check holds TRUE."
+"The permutation checks hold that S is TRUE, f is TRUE
+and g is TRUE and that the Yang-Baxter check holds TRUE."
 }

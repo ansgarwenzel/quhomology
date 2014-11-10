@@ -23,8 +23,9 @@ This describes the order of the underlying rack or birack. A positive integer.
 }
 \details{
 This functions takes all degenerate words of length $degree$ in the rack/biquandle (which are represented by ${Z}_k$) and then calculates their boundary via the followi ng equation. For this, let $x=(x_i)_0^{degree-1}$ be an element of the rack/birack and let $n:=degree-1$.
-$$\partial(x) = \Sigma_{i=0}^n (-1)^i ( (x_0...\hat{(x_i)}...x_n)-(x_0^{x_i}x_1^{x_i}...x_{i-1}^{x_i}{x_{i+1}}_{x_i}...{x_n}_{x_i}) )$$
-If this is a rack rather than a birack, remember that $f_a()=Id$.
+$$partial(x) = Sum_{i=0}^n (-1)^i ( (x_0...{(^x_i)}...x_n)-(x_0^{x_i}x_1^{x_i}...x_{i-1}^{x_i}{x_{i+1}}_{x_i}...{x_n}_{x_i}) )$$, where ^x_i means except x_i.
+If this is a rack rather than a birack, remember that $f_a()=Id$. 
+
 }
 \value{
 A matrix.

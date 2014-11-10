@@ -52,7 +52,8 @@ up_action <- function (a, b, k){
 ##Example for matrix lookup (for commutative quandle over S_3, in which case k = 6)
 up_action <- function (a, b, k){
     #first define the action matrix
-    action_matrix <- rbind(c(0,0,0,0,0,0),c(1,1,5,5,2,2),c(2,5,2,1,5,1),c(3,4,4,3,4,4),c(4,3,3,3,4,3),c(5,2,1,2,1,5))
+    action_matrix <- rbind(c(0,0,0,0,0,0),c(1,1,5,5,2,2),c(2,5,2,1,5,1),
+    c(3,4,4,3,4,4),c(4,3,3,3,4,3),c(5,2,1,2,1,5))
     result <-action_matrix[a + 1, b + 1]
     return(as.integer(result))
 }
