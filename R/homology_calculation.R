@@ -124,9 +124,7 @@ homology <- compiler::cmpfun(function(degree, k, quandle=TRUE){
   }
   #the following is the output depending on the number of zeroes.
   
-  if(s>l+ones){#check if there are any values not equal to one or zero
-    print(paste0("The ",degree,ifelse((degree%%10)==1,"st",ifelse((degree%%10)==2,"nd",ifelse((degree%%10)==3,"rd","th"))), ifelse(quandle," quandle"," rack"), " homology group of R_",k," is isomorphic to Z^", s-(l+ones)," plus the following:"))
-  }
+  
   if(s > (l + ones)){#check if there are any values not equal to one or zero
     print(paste0("The ",degree,ifelse((degree%%10)==1,"st",ifelse((degree%%10)==2,"nd",ifelse((degree%%10)==3,"rd","th"))), ifelse(quandle," quandle"," rack"), " homology group of R_",k," is isomorphic to Z^", s-(l+ones)," plus the following:"))
     
