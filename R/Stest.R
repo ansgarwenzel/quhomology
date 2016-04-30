@@ -1,6 +1,7 @@
 all_combinations <- compiler::cmpfun(function(k){
   output <- t(combn(rep(0:(k-1), 2), 2))
   output <- unique(output)
+  return(output)
 })
 
 check_permutations <- compiler::cmpfun(function(B){
@@ -50,7 +51,7 @@ check_f <- compiler::cmpfun(function(S_X,k,X_squared){
   }
 })
 
-S_test <- compiler::cmpfun(function(k){
+S_test <- compiler::cmpfun(function(k,return_result = FALSE){
   X_squared <- all_combinations(k)
   S_X <- X_squared[, 2:1]
   #here, you have to change S_X to define S
@@ -66,6 +67,9 @@ S_test <- compiler::cmpfun(function(k){
   #and check that Yang-Baxter holds, based on S and f operation
   Yang_Baxter <- check_YB(S_X,k,X_squared)
   
-  
-  print(paste0("The permutation checks hold that S is ", permutations_S, ", f is ",permutations_f," and g is ", permutations_g, " and that the Yang-Baxter check holds ", Yang_Baxter, "."))
+  if(return_result){
+    return(permutations_S,permutations_f,permutations_g,Yang_Baxter)
+  } else{
+    print(paste0("The permutation checks hold that S is ", permutations_S, ", f is ",permutations_f," and g is ", permutations_g, " and that the Yang-Baxter check holds ", Yang_Baxter, "."))
+  }
 })

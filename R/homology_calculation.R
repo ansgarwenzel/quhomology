@@ -16,8 +16,8 @@ push_down <- compiler::cmpfun(function(D){
     b <- D[i + 1]
     if(a!=1||b!=1){
       d <- numbers::GCD(a,b)
-      if(a==0 || b==0){
-        d <- ifelse(a==0,abs(b),abs(a))
+      if(ifelse(T==all.equal(a,0),T,F) || ifelse(T==all.equal(b,0),T,F)){
+        d <- ifelse(ifelse(T==all.equal(a,0),T,F),abs(b),abs(a))
       }
       if(d!=0){
         alpha <- a/d
@@ -96,7 +96,7 @@ row_space <- compiler::cmpfun(function(B){
 
 
 #here is the main function to calculate the homology
-homology <- compiler::cmpfun(function(degree, k, quandle=TRUE){
+homology <- compiler::cmpfun(function(degree, k, quandle=TRUE,return_values = FALSE){
   boundary_F <- boundary_matrix(degree + 1, k, quandle)
   boundary_G <- boundary_matrix(degree, k, quandle)
   rho <- matrix_rank(boundary_G) #first, this calculates the rank of the matrix G. This removes the need to calculate D and Y later.
@@ -108,42 +108,20 @@ homology <- compiler::cmpfun(function(degree, k, quandle=TRUE){
   boundary_G <- round(boundary_F %*% MASS::ginv(boundary_G)) #calculate N. Details in documentation
   boundary_G <- smith(boundary_G)
   Delta <- diag(boundary_G) #Extract the values necessary for the output.
-  s <- length(Delta)
-  l <- 0
-  ones <- 0
-  output <- c()
-  for(i in 1:s){
-    if(Delta[i]==1){
-      ones <- ones + 1 #count number of ones
-    } else if(Delta[i]!=0){
-      l <- l + 1
-      output <- append(output,Delta[i]) #count and extract nonzero and non-one values in the diagonal
-    } else{
-      break
-    }
-  }
-  #the following is the output depending on the number of zeroes.
   
-  
-  if(s > (l + ones)){#check if there are any values not equal to one or zero
-    print(paste0("The ",degree,ifelse((degree%%10)==1,"st",ifelse((degree%%10)==2,"nd",ifelse((degree%%10)==3,"rd","th"))), ifelse(quandle," quandle"," rack"), " homology group of R_",k," is isomorphic to Z^", s-(l+ones)," plus the following:"))
-    
+  if(return_values){
+    return(Delta)
   } else{
-    print(paste0("The ",degree,ifelse((degree%%10)==1,"st",ifelse((degree%%10)==2,"nd",ifelse((degree%%10)==3,"rd","th"))), ifelse(quandle," quandle"," rack"), " homology group of R_",k," is isomorphic to the following:"))
+    #the following is the output depending on the number of zeroes.
+    output_results(ifelse(quandle,"quandle","rack"),Delta,degree,k)
   }
-  if(l>0){ #if so, print out the resulting Z_n groups
-    for(i in 1:l){
-      print(paste0("Z_",Delta[ones+i],ifelse(i!=l," plus","")))
-    }
-  } else{
-    print("0")
-  }
+  return(NULL)
 })
 
 
 
 
-degenerate_homology <- compiler::cmpfun(function(degree, k){
+degenerate_homology <- compiler::cmpfun(function(degree, k, return_values = FALSE){
   boundary_F <- boundary_matrix_degenerate(degree + 1, k)
   boundary_G <- boundary_matrix_degenerate(degree, k)
   rho <- matrix_rank(boundary_G) #first, this calculates the rank of the matrix G. This removes the need to calculate D and Y later.
@@ -156,12 +134,22 @@ degenerate_homology <- compiler::cmpfun(function(degree, k){
   N <- round(B %*% MASS::ginv(Z)) #calculate N. Details in documentation
   S <- smith(N)
   Delta <- diag(S) #Extract the values necessary for the output.
+  if(return_values){
+    return(Delta)  
+  } else{
+    #the following is the output depending on the number of zeroes.
+    output_results("degenerate",Delta,degree,k)
+  }
+  return(NULL)
+})
+
+output_results <- function(hom_type,Delta,degree,k){
   s <- length(Delta)
   l <- 0
   ones <- 0
   output <- c()
   for(i in 1:s){
-    if(Delta[i]==1){
+    if(ifelse(T==all.equal(Delta[i],1),T,F)){
       ones <- ones + 1 #count number of ones
     } else if(Delta[i]!=0){
       l <- l + 1
@@ -170,12 +158,10 @@ degenerate_homology <- compiler::cmpfun(function(degree, k){
       break
     }
   }
-  
-  #the following is the output depending on the number of zeroes.
   if(s>l+ones){#check if there are any values not equal to one or zero
-    print(paste0("The ",degree,ifelse((degree%%10)==1,"st",ifelse((degree%%10)==2,"nd",ifelse((degree%%10)==3,"rd","th"))), " degenerate", " homology group of R_",k," is isomorphic to Z^", s-(l+ones)," plus the following:"))
+    print(paste0("The ",degree,ifelse((degree%%10)==1,"st",ifelse((degree%%10)==2,"nd",ifelse((degree%%10)==3,"rd","th"))), " ",hom_type, " homology group of R_",k," is isomorphic to Z^", s-(l+ones)," plus the following:"))
   } else{
-    print(paste0("The ",degree,ifelse((degree%%10)==1,"st",ifelse((degree%%10)==2,"nd",ifelse((degree%%10)==3,"rd","th"))), " degenerate", " homology group of R_",k," is isomorphic to the following:"))
+    print(paste0("The ",degree,ifelse((degree%%10)==1,"st",ifelse((degree%%10)==2,"nd",ifelse((degree%%10)==3,"rd","th"))), " ",hom_type, " homology group of R_",k," is isomorphic to the following:"))
   }
   if(l>0){ #if so, print out the resulting Z_n groups
     for(i in 1:l){
@@ -184,5 +170,4 @@ degenerate_homology <- compiler::cmpfun(function(degree, k){
   } else{
     print("0")
   }
-})
-
+}

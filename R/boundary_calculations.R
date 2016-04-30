@@ -29,7 +29,7 @@ boundary_names <- compiler::cmpfun(function(degree,k,degenerate){
   if(degenerate&&ncol(output)>1){
     for(i in nrow(output):1){
       for(j in 2:ncol(output)){
-        if(output[i, j]==output[i, j - 1]){
+        if(ifelse(T==all.equal(output[i, j],output[i, j - 1]),T,F)){
           output <- output[-i, ]
           break
         }
@@ -62,7 +62,7 @@ boundary_matrix <- compiler::cmpfun(function(degree, k, degenerate=FALSE){
       
       if(degenerate&&length(name_row) > 1){
         for(l in 2:length(name_row)){
-          if(name_row[l] == name_row[l - 1]){
+          if(ifelse(T==all.equal(name_row[l],name_row[l - 1]),T,F)){
             no_double_names <- FALSE
             break
           }
@@ -72,8 +72,9 @@ boundary_matrix <- compiler::cmpfun(function(degree, k, degenerate=FALSE){
       if(no_double_names){
         row.is.a.match <- apply(column_names, 1, identical, name_row)
         match.id <- which(row.is.a.match)
-        
-        if(j %% 2 == 0){
+        j_mod <- j %% 2
+        comparison <- ifelse(T==all.equal(j_mod,0),TRUE,FALSE)
+        if(comparison){
           result_vector[match.id] <- result_vector[match.id] + 1
         } else{
           result_vector[match.id] <- result_vector[match.id] - 1
@@ -91,7 +92,7 @@ boundary_matrix <- compiler::cmpfun(function(degree, k, degenerate=FALSE){
       
       if(degenerate&&length(name_row) > 1){
         for(l in 2:length(name_row)){
-          if(name_row[l] == name_row[l - 1]){
+          if(ifelse(T==all.equal(name_row[l],name_row[l - 1]),T,F)){
             no_double_names <- FALSE
             break
           }
@@ -101,8 +102,9 @@ boundary_matrix <- compiler::cmpfun(function(degree, k, degenerate=FALSE){
       if(no_double_names){
         row.is.a.match <- apply(column_names, 1, identical, name_row)
         match.id <- which(row.is.a.match)
-        
-        if(j %% 2 == 0){
+        j_mod <- j %% 2
+        comparison <- ifelse(T==all.equal(j_mod,0),TRUE,FALSE)
+        if(comparison){
           result_vector[match.id] <- result_vector[match.id] - 1
         } else{
           result_vector[match.id] <- result_vector[match.id] + 1
@@ -134,7 +136,7 @@ boundary_matrix_degenerate <- compiler::cmpfun(function(degree, k){
       
       if(length(name_row) > 1){
         for(l in 2:length(name_row)){
-          if(name_row[l] == name_row[l - 1]){
+          if(ifelse(T==all.equal(name_row[l],name_row[l - 1]),T,F)){
             double_names <- TRUE
             break
           }
@@ -144,8 +146,9 @@ boundary_matrix_degenerate <- compiler::cmpfun(function(degree, k){
       if(double_names){
         row.is.a.match <- apply(column_names, 1, identical, name_row)
         match.id <- which(row.is.a.match)
-        
-        if(j %% 2 == 0){
+        j_mod <- j %% 2
+        comparison <- ifelse(T==all.equal(j_mod,0),TRUE,FALSE)
+        if(comparison){
           result_vector[match.id] <- result_vector[match.id] + 1
         } else{
           result_vector[match.id] <- result_vector[match.id] - 1
@@ -163,7 +166,7 @@ boundary_matrix_degenerate <- compiler::cmpfun(function(degree, k){
       
       if(length(name_row) > 1){
         for(l in 2:length(name_row)){
-          if(name_row[l] == name_row[l - 1]){
+          if(ifelse(T==all.equal(name_row[l],name_row[l - 1]),T,F)){
             double_names <- TRUE
             break
           }
@@ -173,8 +176,9 @@ boundary_matrix_degenerate <- compiler::cmpfun(function(degree, k){
       if(double_names){
         row.is.a.match <- apply(column_names, 1, identical, name_row)
         match.id <- which(row.is.a.match)
-        
-        if(j %% 2 == 0){
+        j_mod <- j %% 2
+        comparison <- ifelse(T==all.equal(j_mod,0),TRUE,FALSE)
+        if(comparison){
           result_vector[match.id] <- result_vector[match.id] - 1
         } else{
           result_vector[match.id] <- result_vector[match.id] + 1
@@ -195,7 +199,7 @@ boundary_names_degenerate <- compiler::cmpfun(function(degree,k){
   for(i in nrow(output):1){
     keep <- FALSE
     for(j in 2:ncol(output)){
-      if(output[i, j]==output[i, j - 1]){
+      if(ifelse(T==all.equal(output[i, j],output[i, j - 1]),T,F)){
         keep <- TRUE
         break
       }

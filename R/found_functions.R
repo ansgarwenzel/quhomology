@@ -18,7 +18,7 @@ GaussianElimination <- compiler::cmpfun(function(A, B, tol=sqrt(.Machine$double.
   m <- ncol(A)
   if (!missing(B)){
     B <- as.matrix(B)
-    if (!(nrow(B) == nrow(A)) || !is.numeric(B))
+    if (!(ifelse(T==all.equal(nrow(B),nrow(A)),T,F)) || !is.numeric(B))
       stop("argument must be numeric and must match the number of row of
            A")
     A <- cbind(A, B)
@@ -56,6 +56,7 @@ GaussianElimination <- compiler::cmpfun(function(A, B, tol=sqrt(.Machine$double.
   }
   rownames(A) <- NULL
   if (fractions) fractions (A) else round(A, round(abs(log(tol, 10))))
+  return(A)
 })
 
 
