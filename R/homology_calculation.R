@@ -97,6 +97,10 @@ row_space <- compiler::cmpfun(function(B){
 
 #here is the main function to calculate the homology
 homology <- compiler::cmpfun(function(degree, k, quandle=TRUE,return_values = FALSE){
+  if(degree < 2){
+    print(paste0("we cannot calculate the degenerate homology groups H_",degree,". Please choose a higher group."))
+    return(NA)
+  }
   boundary_F <- boundary_matrix(degree + 1, k, quandle)
   boundary_G <- boundary_matrix(degree, k, quandle)
   rho <- matrix_rank(boundary_G) #first, this calculates the rank of the matrix G. This removes the need to calculate D and Y later.
@@ -122,6 +126,10 @@ homology <- compiler::cmpfun(function(degree, k, quandle=TRUE,return_values = FA
 
 
 degenerate_homology <- compiler::cmpfun(function(degree, k, return_values = FALSE){
+  if(degree < 3){
+    print(paste0("we cannot calculate the degenerate homology groups H_",degree,". Please choose a higher group."))
+    return(NA)
+  }
   boundary_F <- boundary_matrix_degenerate(degree + 1, k)
   boundary_G <- boundary_matrix_degenerate(degree, k)
   rho <- matrix_rank(boundary_G) #first, this calculates the rank of the matrix G. This removes the need to calculate D and Y later.

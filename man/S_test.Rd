@@ -13,19 +13,15 @@ S_test(k, return_result = FALSE)
   \item{k}{
 Order of set, a positive integer.
 }
-\item{return_result}
+\item{return_result}{
 This variable specifies if the results of the tests should be returned (as a list, if TRUE) or if the result of the tests should be printed to the screen (if FALSE, the default).
+  }
 }
 \details{
 The test requires the user to define their own up and down actions.
-The different tests work as follows:
-\item{Permutations}{
-Here, the bijectivity of the two functions f, g is considered, as well as the bijectivity of the switch map S.
+The different tests confirm two facts, namely, the bijectivity of the two functions f, g is considered, as well as the bijectivity of the switch map S, via their permutations. Furthermore, via the Yang-Baxter Check, it confirm whether the Yang-Baxter equation holds for the given up and down functions or not.
 }
-\item{Yang-Baxter}{
-This tests if the Yang-Baxter equation holds for the given up and down functions.
-}
-}
+
 \value{
 A vector with 4 boolean entries for the permutation tests for S, f and g, respectively as well as a check that Yang-Baxter holds.
 }

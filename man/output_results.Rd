@@ -34,7 +34,7 @@ This is the diagonal of the Smith Normal Form of the homology representation.
 \details{
 This function prints the specified homology group of the given biquandle from the diagonal of the Smith Normal Form of the representation.
 
-In particular, all 1 give nothing, all zeros give a $\mathbb{Z}$ each and every other integer n gives a $\mathbb{Z_n}$.
+In particular, all 1 give nothing, all zeros give a Z each and every other integer n gives a Z_n.
 }
 \value{
 %%  ~Describe the value returned
