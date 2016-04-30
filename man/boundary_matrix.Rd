@@ -36,7 +36,7 @@ http://www.maths.sussex.ac.uk/Staff/RAF/Maths/homo.pdf
 }
 
 \seealso{
-\code{link{boundar_matrix_degenerate}}
+\code{link{boundary_matrix_degenerate}}
 }
 \examples{
 boundary_matrix(3,3,TRUE)

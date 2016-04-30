@@ -68,7 +68,7 @@ S_test <- compiler::cmpfun(function(k,return_result = FALSE){
   Yang_Baxter <- check_YB(S_X,k,X_squared)
   
   if(return_result){
-    return(permutations_S,permutations_f,permutations_g,Yang_Baxter)
+    return(c(permutations_S,permutations_f,permutations_g,Yang_Baxter),names = c("S permutation","f permutation", "g permutation", "Yang-Baxter"))
   } else{
     print(paste0("The permutation checks hold that S is ", permutations_S, ", f is ",permutations_f," and g is ", permutations_g, " and that the Yang-Baxter check holds ", Yang_Baxter, "."))
   }

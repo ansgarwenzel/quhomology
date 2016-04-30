@@ -170,4 +170,5 @@ output_results <- function(hom_type,Delta,degree,k){
   } else{
     print("0")
   }
+  return(0)
 }

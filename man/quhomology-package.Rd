@@ -3,7 +3,7 @@
 \alias{quhomology}
 \docType{package}
 \title{
-Calculation of Homology groups of a rack/birack.
+Calculation of Homology groups of a rack/birack
 }
 \description{
 This package provides the functionality to calculate the rack, quandle and degenerate Homology groups of a given rack or birack.
