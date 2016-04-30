@@ -51,6 +51,7 @@ check_f <- compiler::cmpfun(function(S_X,k,X_squared){
   }
 })
 
+#' @export
 S_test <- compiler::cmpfun(function(k,return_result = FALSE){
   X_squared <- all_combinations(k)
   S_X <- X_squared[, 2:1]

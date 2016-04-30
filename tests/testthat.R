@@ -13,5 +13,5 @@ context("S Test")
 result <- rep(T,4)
 names(result) <- c("S permutation","f permutation", "g permutation", "Yang-Baxter")
 test_that("S Test calculates correctly:",{
-  expect_equal(S_test(3,T),result)
+  expect_equal(quhomology::S_test(3,T),result)
 })

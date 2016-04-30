@@ -96,6 +96,7 @@ row_space <- compiler::cmpfun(function(B){
 
 
 #here is the main function to calculate the homology
+#' @export
 homology <- compiler::cmpfun(function(degree, k, quandle=TRUE,return_values = FALSE){
   if(degree < 2){
     print(paste0("we cannot calculate the degenerate homology groups H_",degree,". Please choose a higher group."))
@@ -124,7 +125,7 @@ homology <- compiler::cmpfun(function(degree, k, quandle=TRUE,return_values = FA
 
 
 
-
+#' @export
 degenerate_homology <- compiler::cmpfun(function(degree, k, return_values = FALSE){
   if(degree < 3){
     print(paste0("we cannot calculate the degenerate homology groups H_",degree,". Please choose a higher group."))

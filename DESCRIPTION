@@ -1,13 +1,21 @@
 Package: quhomology
 Type: Package
 Title: Calculation of Homology of Quandles, Racks, Biquandles and Biracks
-Version: 1.1
+Version: 1.1.0
 Date: 2016-04-30
 Authors@R: c(person("Ansgar", "Wenzel", email="ansgar.wenzel@gmail.com", role=c("aut", "cre")))
-Description: This package calculates the Quandle, Rack and Degenerate Homology groups of Racks and Biracks (as well as Quandles and Biquandles). In addition, a test is provided to ascertain if a given set with one or two given functions is indeed a biquandle or not.
+Description: This calculates the Quandle, Rack and Degenerate Homology groups of
+    Racks and Biracks (as well as Quandles and Biquandles). In addition, a test is
+    provided to ascertain if a given set with one or two given functions is indeed a
+    biquandle or not.
 License: GPL (>=3)
-Imports: MASS, numbers
-Depends: R(>= 3.0.0)
+Imports:
+    MASS,
+    numbers
+Depends:
+    R(>= 3.0.0)
 ByteCompile: yes
 ImportsFrom: compiler cmpfun
-Suggests: testthat
+Suggests:
+    testthat
+RoxygenNote: 5.0.1
