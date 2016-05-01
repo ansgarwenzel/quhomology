@@ -21,7 +21,7 @@ License: \tab GPL v3+\cr
 \author{
 Ansgar Wenzel
 
-Maintainer:  <aw301@sussex.ac.uk>
+Maintainer:  <ansgar.wenzel@gmail.com>
 
 }
 \references{
