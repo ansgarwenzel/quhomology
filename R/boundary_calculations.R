@@ -1,6 +1,6 @@
 #this collects all the functions necessary for the calculation of boundary matrices of (bi)quandles
 
-up_action <- compiler::cmpfun(function(a, b, k){
+up_action <- function(a, b, k){
   
   #result <- 2 * b - a ###for dihedral quandle
   #binv <- k - b
@@ -15,15 +15,15 @@ up_action <- compiler::cmpfun(function(a, b, k){
   ############
   
   return(as.integer(result))
-})
+}
 
 
-down_action <- compiler::cmpfun(function(a, b, k){
+down_action <- function(a, b, k){
   return(as.integer(a))
-})
+}
 
 
-boundary_names <- compiler::cmpfun(function(degree,k,degenerate){
+boundary_names <- function(degree,k,degenerate){
   output <- t(combn(rep(0:(k-1), degree), degree))
   output <- unique(output)
   if(degenerate&&ncol(output)>1){
@@ -37,10 +37,10 @@ boundary_names <- compiler::cmpfun(function(degree,k,degenerate){
     }
   }
   return(output)
-})
+}
 
 
-boundary_matrix <- compiler::cmpfun(function(degree, k, degenerate=FALSE){
+boundary_matrix <- function(degree, k, degenerate=FALSE){
   if(degenerate){
     m <- k*((k-1)^(degree-1))
     n <- k*((k-1)^(degree-2))
@@ -114,10 +114,10 @@ boundary_matrix <- compiler::cmpfun(function(degree, k, degenerate=FALSE){
     M[i, ] <- result_vector
   }
   return(M)
-})
+}
 
 
-boundary_matrix_degenerate <- compiler::cmpfun(function(degree, k){
+boundary_matrix_degenerate <- function(degree, k){
   
   m <- k^(degree) - k*((k-1)^(degree-1))
   n <- k^(degree-1) - k*((k-1)^(degree-2))
@@ -188,11 +188,11 @@ boundary_matrix_degenerate <- compiler::cmpfun(function(degree, k){
     M[i, ] <- result_vector
   }
   return(M)
-})
+}
 
 
 
-boundary_names_degenerate <- compiler::cmpfun(function(degree,k){
+boundary_names_degenerate <- function(degree,k){
   output <- t(combn(rep(0:(k-1), degree), degree))
   output <- unique(output)
   
@@ -209,5 +209,5 @@ boundary_names_degenerate <- compiler::cmpfun(function(degree,k){
     }
   }
   return(output)
-})
+}
 

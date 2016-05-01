@@ -1,16 +1,16 @@
 #first define the subfunctions
 
 #this is used to calculate the left elementary matrix X
-findX <- compiler::cmpfun(function(A){
+findX <- function(A){
   X <- diag(nrow(A)) #create Identity matrix
   G_X <- cbind(A,X) #combine identity matrix with original matrix for Gaussian elimination
   GX_res <- GaussianElimination(G_X) #Gaussian elimination
   X <- GX_res[, (ncol(GX_res)-nrow(A)+1):ncol(GX_res)] #extract the left matrix, X
   return(X)
-})
+}
 
 
-push_down <- compiler::cmpfun(function(D){
+push_down <- function(D){
   for(i in 1:(length(D) - 1)){
     a <- D[i]
     b <- D[i + 1]
@@ -30,11 +30,11 @@ push_down <- compiler::cmpfun(function(D){
     }
   }
   return(D)
-})
+}
 
 
 
-check_more_push <- compiler::cmpfun(function(D){
+check_more_push <- function(D){
   for(i in 2:length(D)){
     if(D[i] < D[i - 1]){
       if(D[i]!=0){
@@ -45,13 +45,13 @@ check_more_push <- compiler::cmpfun(function(D){
     }
   }
   return(FALSE)
-})
+}
 
 
 
 #this calculates the smith normal form based on the calculation of the Hermite Normal Form.
 #In particular, HNF((HNF(A))^T)
-smith <- compiler::cmpfun(function(S){
+smith <- function(S){
   S <- numbers::hermiteNF(S)$H
   S <- t(numbers::hermiteNF(t(S))$H)
   D <- diag(S)
@@ -75,29 +75,28 @@ smith <- compiler::cmpfun(function(S){
   }
   diag(S) <- D
   return(S)
-})
+}
 
 
 
-matrix_rank <- compiler::cmpfun(function(A){
+matrix_rank <- function(A){
   A <- GaussianElimination(A)
   A <- unique(A)
   return(nrow(A) - 1)
-})
+}
 
 
 
-row_space <- compiler::cmpfun(function(B){
+row_space <- function(B){
   B <- t(numbers::hermiteNF(t(B))$H)
   return(B)
-})
+}
 
 
 
 
 #here is the main function to calculate the homology
-#' @export
-homology <- compiler::cmpfun(function(degree, k, quandle=TRUE,return_values = FALSE){
+homology <- function(degree, k, quandle=TRUE,return_values = FALSE){
   if(degree < 2){
     print(paste0("we cannot calculate the degenerate homology groups H_",degree,". Please choose a higher group."))
     return(NA)
@@ -121,14 +120,14 @@ homology <- compiler::cmpfun(function(degree, k, quandle=TRUE,return_values = FA
     output_results(ifelse(quandle,"quandle","rack"),Delta,degree,k)
   }
   return(NULL)
-})
+}
 
 
 
-#' @export
-degenerate_homology <- compiler::cmpfun(function(degree, k, return_values = FALSE){
+
+degenerate_homology <- function(degree, k, return_values = FALSE){
   if(degree < 3){
-    print(paste0("we cannot calculate the degenerate homology groups H_",degree,". Please choose a higher group."))
+    print(paste0("we cannot calculate the degenerate homology group H_",degree,". Please choose a higher group."))
     return(NA)
   }
   boundary_F <- boundary_matrix_degenerate(degree + 1, k)
@@ -150,7 +149,7 @@ degenerate_homology <- compiler::cmpfun(function(degree, k, return_values = FALS
     output_results("degenerate",Delta,degree,k)
   }
   return(NULL)
-})
+}
 
 output_results <- function(hom_type,Delta,degree,k){
   s <- length(Delta)

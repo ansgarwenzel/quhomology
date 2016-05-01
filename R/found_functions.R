@@ -3,7 +3,7 @@
 #and slightly adapted for this project.
 #He has given me permission (by email) to use his functions for this package.
 
-GaussianElimination <- compiler::cmpfun(function(A, B, tol=sqrt(.Machine$double.eps),
+GaussianElimination <- function(A, B, tol=sqrt(.Machine$double.eps),
                                  verbose=FALSE, fractions=FALSE){
   # A: coefficient matrix
   # B: right-hand side vector or matrix
@@ -57,10 +57,10 @@ GaussianElimination <- compiler::cmpfun(function(A, B, tol=sqrt(.Machine$double.
   rownames(A) <- NULL
   if (fractions) fractions (A) else round(A, round(abs(log(tol, 10))))
   return(A)
-})
+}
 
 
-rref <- compiler::cmpfun(function(A, tol=sqrt(.Machine$double.eps),verbose=FALSE,
+rref <- function(A, tol=sqrt(.Machine$double.eps),verbose=FALSE,
                   fractions=FALSE){
   ## A: coefficient matrix
   ## tol: tolerance for checking for 0 pivot
@@ -92,4 +92,4 @@ rref <- compiler::cmpfun(function(A, tol=sqrt(.Machine$double.eps),verbose=FALSE
       A[c(i,n),] <- A[c(n,i),] # 0 rows to bottom
   if (fractions) fractions (A)
   else round(A, round(abs(log(tol,10))))
-})
+}

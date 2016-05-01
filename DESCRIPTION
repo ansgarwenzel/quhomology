@@ -15,7 +15,6 @@ Imports:
 Depends:
     R(>= 3.0.0)
 ByteCompile: yes
-ImportsFrom: compiler cmpfun
 Suggests:
     testthat
 RoxygenNote: 5.0.1
