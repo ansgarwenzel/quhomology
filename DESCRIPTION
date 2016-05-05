@@ -17,4 +17,3 @@ Depends:
 ByteCompile: yes
 Suggests:
     testthat
-Classification/MCS-2010: 57M27, 57M25
