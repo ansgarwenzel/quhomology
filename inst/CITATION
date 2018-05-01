@@ -1,0 +1,21 @@
+citHeader("To cite quhomology in publications use:")
+
+citEntry(entry = "Article",
+         title        = "Quandle and Biquandle Homology Calculation in R",
+         author       = personList(as.person("Roger Fenn"),
+                                   as.person("Ansgar Wenzel")),
+         journal      = "Journal of Open Research Software",
+         year         = "2018",
+         volume       = "6",
+         number       = "1",
+         pages        = "4",
+         url          = "https://openresearchsoftware.metajnl.com/articles/10.5334/jors.53",
+         doi          = "http://doi.org/10.5334/jors.53",
+         
+         textVersion  =
+           paste("Roger Fenn, Ansgar Wenzel (2018).",
+                 "Quandle and Biquandle Homology Calculation in R.",
+                 "Journal of Open Research Software, 6(1), p.3.",
+                 "https://openresearchsoftware.metajnl.com/articles/10.5334/jors.53, ",
+                 "DOI: http://doi.org/10.5334/jors.53.")
+)

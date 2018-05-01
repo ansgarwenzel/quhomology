@@ -21,7 +21,7 @@ License: \tab GPL v3+\cr
 \author{
 Ansgar Wenzel
 
-Maintainer:  <ansgar.wenzel@gmail.com>
+Maintainer:  <ansgar.wenzel+quhomology@gmail.com>
 
 }
 \references{

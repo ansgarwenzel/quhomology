@@ -31,4 +31,4 @@ for this, change the actions as required and then run
 S_test(k)
 
 Question/Problems?
-Send an email to a.wenzel(at)sussex.ac.uk
+Send an email to ansgar.wenzel+quhomology(at)gmail.com
