@@ -10,7 +10,7 @@ citEntry(entry = "Article",
          number       = "1",
          pages        = "4",
          url          = "https://openresearchsoftware.metajnl.com/articles/10.5334/jors.53",
-         doi          = "http://doi.org/10.5334/jors.53",
+         doi          = "10.5334/jors.53",
          
          textVersion  =
            paste("Roger Fenn, Ansgar Wenzel (2018).",

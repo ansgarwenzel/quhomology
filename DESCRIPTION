@@ -1,8 +1,8 @@
 Package: quhomology
 Type: Package
 Title: Calculation of Homology of Quandles, Racks, Biquandles and Biracks
-Version: 1.1.0
-Date: 2016-04-30
+Version: 1.1.1
+Date: 2018-05-01
 Authors@R: c(person("Ansgar", "Wenzel", email="ansgar.wenzel+quhomology@gmail.com", role=c("aut", "cre")))
 Description: This calculates the Quandle, Rack and Degenerate Homology groups of
     Racks and Biracks (as well as Quandles and Biquandles). In addition, a test is
